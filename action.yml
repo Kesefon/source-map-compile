@@ -42,6 +42,16 @@ runs:
         dir: "${{ github.workspace }}/game_files/"
         os: "windows"
         app: ${{ inputs.gameid }}
+        depot: 732 #Workaround till https://github.com/SteamRE/DepotDownloader/issues/222 is a thing
+        osarch: 64
+    - uses: "Skippeh/steamfetch-action@v1"
+      with:
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
+        dir: "${{ github.workspace }}/game_files/"
+        os: "windows"
+        app: ${{ inputs.gameid }}
+        depot: 731
         osarch: 64
     - uses: "Skippeh/steamfetch-action@v1.0.2"
       with:
