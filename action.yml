@@ -51,9 +51,9 @@ runs:
         os: "windows"
         app: ${{ inputs.sdkid }}
         osarch: 64
-    - run: "${{ github.workspace }}/game_files/bin/vbsp.exe ${{ inputs.vbspargs }}-game ${{ github.workspace }}/game_files/csgo ${{ inputs.map }}"
-      shell: bash
-    - run: "${{ github.workspace }}/game_files/bin/vvis.exe ${{ inputs.vvisargs }} -game ${{ github.workspace }}/game_files/csgo ${{ inputs.map }}"
-      shell: bash
-    - run: "${{ github.workspace }}/game_files/bin/vrad.exe ${{ inputs.vradargs }} -game ${{ github.workspace }}/game_files/csgo ${{ inputs.map }}"
-      shell: bash
+    - run: "${{ github.workspace }}\game_files\bin\vbsp.exe ${{ inputs.vbspargs }}-game ${{ github.workspace }}\game_files\csgo ${{ inputs.map }}"
+      shell: cmd
+    - run: "${{ github.workspace }}\game_files\bin\vvis.exe ${{ inputs.vvisargs }} -game ${{ github.workspace }}\game_files\csgo ${{ inputs.map }}"
+      shell: cmd
+    - run: "${{ github.workspace }}\game_files\bin\vrad.exe ${{ inputs.vradargs }} -game ${{ github.workspace }}\game_files\csgo ${{ inputs.map }}"
+      shell: cmd
