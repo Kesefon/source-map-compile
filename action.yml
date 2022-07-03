@@ -35,7 +35,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: "Skippeh/steamfetch-action@v1"
+    - uses: "Kesefon/steamfetch-action@main" #Waiting for https://github.com/Skippeh/steamfetch-action/pull/1
       with:
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
@@ -44,7 +44,7 @@ runs:
         app: ${{ inputs.gameid }}
         depot: 732 #Workaround till https://github.com/SteamRE/DepotDownloader/issues/222 is a thing
         osarch: 64
-    - uses: "Skippeh/steamfetch-action@v1"
+    - uses: "Kesefon/steamfetch-action@main"
       with:
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
@@ -53,7 +53,7 @@ runs:
         app: ${{ inputs.gameid }}
         depot: 731
         osarch: 64
-    - uses: "Skippeh/steamfetch-action@v1.0.2"
+    - uses: "Kesefon/steamfetch-action@main"
       with:
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
@@ -61,7 +61,6 @@ runs:
         os: "windows"
         app: ${{ inputs.sdkid }}
         osarch: 64
-        files: "regex: ^((?!_CommonRedist).)*$"
     - run: "${{ github.workspace }}\\game_files\\bin\\vbsp.exe ${{ inputs.vbspargs }} -game ${{ github.workspace }}\\game_files\\csgo ${{ inputs.map }}"
       shell: cmd
     - run: "${{ github.workspace }}\\game_files\\bin\\vvis.exe ${{ inputs.vvisargs }} -game ${{ github.workspace }}\\game_files\\csgo ${{ inputs.map }}"
