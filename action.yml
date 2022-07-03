@@ -1,0 +1,59 @@
+name: 'Source Map Compile'
+description: 'Compile source maps'
+inputs:
+  gameid:
+    description: 'AppId of the game'
+    required: false
+    default: '730' #Default CS:GO
+  sdkid:
+    description: 'AppId of the game sdk'
+    required: false
+    default: '745' #Default CS:GO SDK
+  map:
+    description: '.vmf to be compiled'
+    required: true
+  vbspargs:
+    description: 'Additional vbsp.exe arguments'
+    required: false
+    default: ''
+  vvisargs:
+    description: 'Additional vvis.exe arguments'
+    required: false
+    default: ''
+  vradargs:
+    description: 'Additional vrad.exe arguments'
+    required: false
+    default: '-both -final -textureshadows -StaticPropLighting -StaticPropPolys'
+  username:
+    description: 'Steam account username'
+    required: false
+    default: ''
+  password:
+    description: 'Steam account password'
+    required: false
+    default: ''
+runs:
+  using: "composite"
+  steps:
+    - uses: "Skippeh/steamfetch-action@v1"
+      with:
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
+        dir: "${{ github.workspace }}/game_files/"
+        os: "windows"
+        app: ${{ inputs.gameid }}
+        osarch: 64
+    - uses: "Skippeh/steamfetch-action@v1"
+      with:
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
+        dir: "${{ github.workspace }}/game_files/"
+        os: "windows"
+        app: ${{ inputs.sdkid }}
+        osarch: 64
+    - run: "${{ github.workspace }}/game_files/bin/vbsp.exe ${{ inputs.vbspargs }}-game ${{ github.workspace }}/game_files/csgo ${{ inputs.map }}"
+      shell: bash
+    - run: "${{ github.workspace }}/game_files/bin/vvis.exe ${{ inputs.vvisargs }} -game ${{ github.workspace }}/game_files/csgo ${{ inputs.map }}"
+      shell: bash
+    - run: "${{ github.workspace }}/game_files/bin/vrad.exe ${{ inputs.vradargs }} -game ${{ github.workspace }}/game_files/csgo ${{ inputs.map }}"
+      shell: bash
