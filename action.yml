@@ -66,5 +66,8 @@ runs:
         app: ${{ inputs.sdkid }}
         osarch: 64
     - run: "C:\\game_files\\bin\\vbsp.exe ${{ inputs.vbspargs }} -game C:\\game_files\\${{ inputs.game }} ${{ inputs.map }}"
+      shell: pwsh
     - run: "C:\\game_files\\bin\\vvis.exe ${{ inputs.vvisargs }} -game C:\\game_files\\${{ inputs.game }} ${{ inputs.map }}"
+      shell: pwsh
     - run: "C:\\game_files\\bin\\vrad.exe ${{ inputs.vradargs }} -game C:\\game_files\\${{ inputs.game }} ${{ inputs.map }}"
+      shell: pwsh
