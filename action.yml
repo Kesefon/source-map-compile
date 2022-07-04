@@ -69,7 +69,7 @@ runs:
       run: |
         $proc = Start-Process -filePath C:\\game_files\\csgo.exe -workingdirectory C:\\game_files\\ -PassThru
         $timeouted = $null # reset any previously set timeout
-        $proc | Wait-Process -Timeout 4 -ErrorAction SilentlyContinue -ErrorVariable timeouted
+        $proc | Wait-Process -Timeout 300 -ErrorAction SilentlyContinue -ErrorVariable timeouted
         if ($timeouted)
           {
              $proc | kill
