@@ -43,7 +43,7 @@ runs:
       with:
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
-        dir: "${{ github.workspace }}/game_files/"
+        dir: "C:\\game_files\\"
         os: "windows"
         app: ${{ inputs.gameid }}
         depot: 732 #Workaround till https://github.com/SteamRE/DepotDownloader/issues/222 is a thing
@@ -52,7 +52,7 @@ runs:
       with:
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
-        dir: "${{ github.workspace }}/game_files/"
+        dir: "C:\\game_files\\"
         os: "windows"
         app: ${{ inputs.gameid }}
         depot: 731
