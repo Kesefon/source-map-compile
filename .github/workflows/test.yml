@@ -1,0 +1,23 @@
+name: Test
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  Test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Compile Map
+        uses:  kesefon/source-map-compile@main
+        with:
+          map: "${{ github.workspace }}\\de_test.vmf"
+          username: "${{ secrets.STEAM_USER }}"
+          password: "${{ secrets.STEAM_PASS }}"
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          path: ${{ github.workspace }}\\de_test.bsp
