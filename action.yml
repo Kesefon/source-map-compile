@@ -65,16 +65,6 @@ runs:
         os: "windows"
         app: ${{ inputs.sdkid }}
         osarch: 64
-    - shell: pwsh
-      run: |
-        $proc = Start-Process -filePath C:\\game_files\\csgo.exe -workingdirectory C:\\game_files\\ -PassThru
-        $timeouted = $null # reset any previously set timeout
-        $proc | Wait-Process -Timeout 300 -ErrorAction SilentlyContinue -ErrorVariable timeouted
-        if ($timeouted)
-          {
-             $proc | kill
-          }
-      
     - run: "C:\\game_files\\bin\\vbsp.exe ${{ inputs.vbspargs }} -game C:\\game_files\\${{ inputs.game }} ${{ inputs.map }}"
       shell: pwsh
     - run: "C:\\game_files\\bin\\vvis.exe ${{ inputs.vvisargs }} -game C:\\game_files\\${{ inputs.game }} ${{ inputs.map }}"
