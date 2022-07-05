@@ -9,6 +9,10 @@ inputs:
     description: 'AppId of the game'
     required: false
     default: '730' #Default CS:GO
+  gamedepot:
+    description: 'Depots to download'
+    required: false
+    default: '732 731' #Default CS:GO Windows binaries and common files
   sdkid:
     description: 'AppId of the game sdk'
     required: false
@@ -46,16 +50,7 @@ runs:
         dir: "C:\\game_files\\"
         os: "windows"
         app: ${{ inputs.gameid }}
-        depot: 732 #Workaround till https://github.com/SteamRE/DepotDownloader/issues/222 is a thing
-        osarch: 64
-    - uses: "Skippeh/steamfetch-action@v1.0.3"
-      with:
-        username: ${{ inputs.username }}
-        password: ${{ inputs.password }}
-        dir: "C:\\game_files\\"
-        os: "windows"
-        app: ${{ inputs.gameid }}
-        depot: 731
+        depot: ${{ inputs.gamedepot }}
         osarch: 64
     - uses: "Skippeh/steamfetch-action@v1.0.3"
       with:
