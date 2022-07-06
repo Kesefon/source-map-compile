@@ -65,7 +65,7 @@ runs:
         app: ${{ inputs.sdkid }}
         osarch: 64
     - if: inputs.assetsdir
-      run: "Copy-Item -Path \"${{ inputs.assetsdir }}\\*\" -Destination \"C:\\game_files\\${{ inputs.game }}\" -Recurse"
+      run: "Copy-Item -Path \"${{ inputs.assetsdir }}\\*\" -Destination \"C:\\game_files\\${{ inputs.game }}\" -Recurse -Force"
       shell: pwsh
     - run: "C:\\game_files\\bin\\vbsp.exe ${{ inputs.vbspargs }} -game C:\\game_files\\${{ inputs.game }} ${{ inputs.map }}"
       shell: pwsh
