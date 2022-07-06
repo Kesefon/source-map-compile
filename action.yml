@@ -20,6 +20,10 @@ inputs:
   map:
     description: '.vmf to be compiled'
     required: true
+  assetsdir:
+    description: 'Directory containing custom assets'
+    required: false
+    default: ''
   vbspargs:
     description: 'Additional vbsp.exe arguments'
     required: false
@@ -60,6 +64,9 @@ runs:
         os: "windows"
         app: ${{ inputs.sdkid }}
         osarch: 64
+    - if: inputs.assetsdir
+      run: "Copy-Item -Path \"${{ inputs.assetsdir }}\\*\" -Destination \"C:\\game_files\\${{ inputs.game }}\" -Recurse"
+      shell: pwsh
     - run: "C:\\game_files\\bin\\vbsp.exe ${{ inputs.vbspargs }} -game C:\\game_files\\${{ inputs.game }} ${{ inputs.map }}"
       shell: pwsh
     - run: "C:\\game_files\\bin\\vvis.exe ${{ inputs.vvisargs }} -game C:\\game_files\\${{ inputs.game }} ${{ inputs.map }}"
